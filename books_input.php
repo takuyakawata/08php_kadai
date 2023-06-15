@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,11 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="/css/googlebooks.css">
+    <link rel="stylesheet" href="css/books.css">
 
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-
-    
 
     <script src="https://cdn.jsdelivr.net/gh/yamazakidaisuke/BmapQuery/js/BmapQuery.js"></script>
 
@@ -17,22 +16,28 @@
 
     <title>本検索アプリ</title>
 </head>
+
 <body>
     <main>
         <h1>GOOGLE BOOKS</h1>
 
-        <div class="btns">
+        <form class="btns" action="books_create.php" method="POST">
             <div class="btn">
             <p>本の名前を入力してね！</p>
-            <input input name="" id="keyword" width="30" height="20"></input>
+            <a href="books_read.php">タイトル履歴</a>
+            <input  name="title" id="keyword" width="30" height="20"></input>
             <button id="send" class="search">タイトルで検索</button>
             </div>
-        
+        </form>
+
+        <form class="btns"  action="books_create.php" method="POST">
             <div class="btn">
                 <p>本の著者を入力してね！</p>
-                <input input id="keyh" width="30" height="20"></input>
+                <a href="books_read.php">著者履歴</a>
+                <input name="author" id="keyh" width="30" height="20"></input>
                 <button id="sendh" class="search">著者で検索</button>
             </div>
+        </form>
 
             <div class="btn near_lib">
                 <p>近くのと図書館にあるかな？</p>
@@ -40,8 +45,7 @@
                 <button id="lib_btn" class="search">図書館検索</button>
                 <button id="lib2_btn" class="search">蔵書検索</button>
             </div>
-        </div>
-        
+
         <!-- 検索結果が出る場所 -->
         <h1>検索結果</h1>
         <section class="result">
@@ -90,7 +94,17 @@
 <div>
     <div id="map"></div>
 </div>
+<!------------------------->
 
+
+<div class="kansou">
+    <h2>読んだ本の感想</h2>
+
+    <form action="books_create.php">
+        <input type="date" name="date" id="">
+        <input type="text" name="commit">
+    </form>
+</div>
 </main>
 
 </body>
@@ -136,7 +150,6 @@
     // Firebase configuration KEYを取得して設定
     const firebaseConfig = {
         apiKey: "AIzaSyAQoEKFxrOMca-0FHiyYJrv98WBoFwwWSo",
-
         authDomain: "api-work1.firebaseapp.com",
         projectId: "api-work1",
         storageBucket: "api-work1.appspot.com",
@@ -260,7 +273,7 @@ $("#sendh").on('click', function () {
             for (let i = 0; i < response.data.items.length; i++) {
 
                 array2.push(
-                     `   <div >
+                `   <div >
                 <section class="result">
                     <div class="img">
                     <img src="${response.data.items[i].volumeInfo.imageLinks.smallThumbnail}">
