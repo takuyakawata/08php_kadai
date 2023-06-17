@@ -25,7 +25,9 @@
             <div class="btn">
             <p>本の名前を入力してね！</p>
             <a href="books_read.php">タイトル履歴</a>
-            <input  name="title" id="keyword" width="30" height="20"></input>
+            <input  name="title" id="keyword" width="30" height="20">
+            <?=$title?>
+            </input>
             <button id="send" class="search">タイトルで検索</button>
             </div>
         </form>
@@ -160,16 +162,16 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 // =============================================
-    //GoogleAuth認証用、ユーザーの認証情報を取得
-    const provider = new GoogleAuthProvider();
-    provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-    const auth = getAuth();
+//     //GoogleAuth認証用、ユーザーの認証情報を取得
+//     const provider = new GoogleAuthProvider();
+//     provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+//     const auth = getAuth();
 
-// -------------------------------------------------
-    function redirectToIndexPage() {
-        // エラーが発生した場合はindex.htmlにページ遷移する
-        window.location.href = "login.html";
-    }
+// // -------------------------------------------------
+//     function redirectToIndexPage() {
+//         // エラーが発生した場合はindex.htmlにページ遷移する
+//         window.location.href = "login.html";
+//     }
 
 // =============================================
 // GoogleBooksAPI
